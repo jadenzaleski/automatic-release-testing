@@ -1,35 +1,41 @@
 name: Release
+
 on:
   workflow_dispatch:
   push:
     branches:
-      - master # or main
+      - master
 
 permissions:
-  contents: read # for checkout
+  contents: read
 
 jobs:
   release:
-    name: Release
     runs-on: ubuntu-latest
     permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for trusted publishing and npm provenance
+      contents: write
+      issues: write
+      pull-requests: write
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+
+      - uses: actions/setup-node@v4
         with:
-          node-version: "lts/*"
-      - name: Install semantic-release
-        run: npx --package semantic-release --package @semantic-release/exec --package conventional-changelog-conventionalcommits semantic-release
-      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-        run: npm audit signatures
+          node-version: 20
+
+      - name: Install semantic-release deps
+        run: |
+          npm install \
+            semantic-release@25.0.2 \
+            @semantic-release/commit-analyzer@13.0.1 \
+            @semantic-release/release-notes-generator@14.1.0 \
+            @semantic-release/github@12.0.2 \
+            @semantic-release/exec@7.1.0 \
+            conventional-changelog-conventionalcommits@9.1.0
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
