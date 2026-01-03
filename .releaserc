@@ -9,6 +9,8 @@
       "@semantic-release/release-notes-generator",
       {
         "preset": "conventionalcommits",
+        "includeBody": true,
+        "commitsSort": ["scope", "subject"],
         "writerOpts": {
           "footerPartial": "Docker image: `docker pull ghcr.io/jadenzaleski/automatic-release-testing:${nextRelease.version}`"
         }
