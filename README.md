@@ -4,4 +4,4 @@ Testing and learning how to handle releases, packages, actions, and automatic ve
 ## TODO
 - [x] Add support for publishing images to GHCR.
 - [ ] Enforce commit message format.
-- [ ] Add example CI.
+- [x] Add example CI.
