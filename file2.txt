@@ -1,1 +1,3 @@
 file2 text.
+
+Adding some more text as a fix.
