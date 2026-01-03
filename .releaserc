@@ -7,7 +7,12 @@
     ],
     [
       "@semantic-release/release-notes-generator",
-      { "preset": "conventionalcommits" }
+      {
+        "preset": "conventionalcommits",
+        "writerOpts": {
+          "footerPartial": "Docker image: `docker pull ghcr.io/jadenzaleski/automatic-release-testing:${nextRelease.version}`"
+        }
+      }
     ],
     [
       "@semantic-release/exec",
