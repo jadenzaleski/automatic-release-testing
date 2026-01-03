@@ -3,17 +3,18 @@
   "plugins": [
     [
       "@semantic-release/commit-analyzer",
-      {
-        "preset": "conventionalcommits"
-      }
+      { "preset": "conventionalcommits" }
     ],
     [
       "@semantic-release/release-notes-generator",
+      { "preset": "conventionalcommits" }
+    ],
+    [
+      "@semantic-release/exec",
       {
-        "preset": "conventionalcommits"
+        "publishCmd": "docker build -t ghcr.io/jadenzaleski/automatic-release-testing:${nextRelease.version} . && docker push ghcr.io/jadenzaleski/automatic-release-testing:${nextRelease.version} && docker tag ghcr.io/jadenzaleski/automatic-release-testing:${nextRelease.version} ghcr.io/jadenzaleski/automatic-release-testing:latest && docker push ghcr.io/jadenzaleski/automatic-release-testing:latest"
       }
     ],
-    "@semantic-release/github",
-    "@semantic-release/exec"
+    "@semantic-release/github"
   ]
 }
