@@ -1,1 +1,1 @@
-file2 text
+file2 text.
