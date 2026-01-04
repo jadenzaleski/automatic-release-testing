@@ -83,7 +83,7 @@ module.exports = {
      *
      * This improves readability in changelogs.
      */
-    'subject-case': [2, 'never', ['sentence-case']],
+    'subject-case': [2, 'always', ['sentence-case']],
 
     /**
      * Limit the commit header length.
